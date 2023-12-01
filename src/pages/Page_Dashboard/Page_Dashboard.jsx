@@ -141,7 +141,7 @@ export default function Page_Dashboard() {
             >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <h1>Bulb</h1>
-                <h3>Status: ON</h3>
+                <h3>Current Status: ON</h3>
               </Box>
               <LightbulbIcon fontSize="large" />
             </Paper>
@@ -160,7 +160,7 @@ export default function Page_Dashboard() {
             >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <h1>Door</h1>
-                <h3>Status: ON</h3>
+                <h3>Current Status: ON</h3>
               </Box>
               <MeetingRoomIcon fontSize="large" />
             </Paper>
@@ -179,7 +179,7 @@ export default function Page_Dashboard() {
             >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <h1>Pumper</h1>
-                <h3>Status: ON</h3>
+                <h3>Current Status: ON</h3>
               </Box>
               <HardwareIcon fontSize="large" />
             </Paper>

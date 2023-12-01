@@ -215,7 +215,7 @@ export default function Page_Monitor_Temperature() {
                 <h3>Current Value</h3>
                 <Box
                   sx={{
-                    fontSize: 120,
+                    fontSize: 80,
                     fontWeight: 600,
                     color: "black",
                     display: "inline-flex",
@@ -223,7 +223,7 @@ export default function Page_Monitor_Temperature() {
                     marginBottom: 1,
                   }}
                 >
-                  30
+                  {30} {"\u00B0C"}
                 </Box>
               </Box>
               <DeviceThermostatIcon fontSize="large" />
