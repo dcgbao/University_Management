@@ -1,10 +1,40 @@
-import { Box, Divider, Grid, Paper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import MonitoringChart from "../../components/Chart/MonitoringChart";
+import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
+import axios from "axios";
 
 export default function Page_Monitor_Temperature() {
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [timeRange, setTimeRange] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("A: ", new Date(startTime.$d).toJSON());
+    console.log("B: ", new Date(endTime.$d).toJSON());
+    console.log("C: ", timeRange);
+    // if (timeRange === "day" || timeRange === "minute" || timeRange === "second") {
+
+    // }
+  };
+
   // Test Data
   const rows = [
     { id: 1, value: 25.2, timestamp: "11/11/2023 12:00" },
@@ -49,6 +79,8 @@ export default function Page_Monitor_Temperature() {
     },
   ];
 
+  console.log("Time Range: ", timeRange);
+
   return (
     <>
       <Box
@@ -66,25 +98,138 @@ export default function Page_Monitor_Temperature() {
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
       <Box sx={{ marginTop: 2 }}>
         <Grid container spacing={5}>
-          <Grid item xs={7}>
+          <Grid item xs={9}>
             <div>
-              <MonitoringChart uri="http://localhost:4000/temperature/monitor"></MonitoringChart>
+              <MonitoringChart uri="http://localhost:4000/measurements/temperature"></MonitoringChart>
             </div>
+            <Box sx={{ display: "flex", marginTop: 3 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginRight: 6,
+                }}
+              >
+                <h4>Choose Time Range</h4>
+                <FormControl fullWidth sx={{ marginTop: 1 }}>
+                  <InputLabel id="demo-simple-select-label">
+                    Time Range
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={timeRange}
+                    label="Time Range"
+                    onChange={(newValue) => {
+                      setTimeRange(newValue.target.value);
+                    }}
+                  >
+                    <MenuItem value={"custom"}>Custom Time Range</MenuItem>
+                    <MenuItem value={"day"}>Past 3 days</MenuItem>
+                    <MenuItem value={"minute"}>Past 3 minutes</MenuItem>
+                    <MenuItem value={"second"}>Past 3 seconds</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              {timeRange === "custom" ? (
+                <>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      marginRight: 6,
+                    }}
+                  >
+                    <h4>Choose Start Time</h4>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DateTimePicker"]}>
+                        <DateTimePicker
+                          label="Start Time"
+                          sx={{ width: "25%" }}
+                          slotProps={{ textField: { required: true } }}
+                          value={startTime}
+                          onChange={(newValue) => {
+                            setStartTime(newValue);
+                          }}
+                          format="YYYY-MM-DD HH:mm"
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      marginRight: 0,
+                    }}
+                  >
+                    <h4>Choose End Time</h4>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DateTimePicker"]}>
+                        <DateTimePicker
+                          label="End Time"
+                          sx={{ width: "25%" }}
+                          slotProps={{ textField: { required: true } }}
+                          value={endTime}
+                          onChange={(newValue) => {
+                            setEndTime(newValue);
+                          }}
+                          format="YYYY-MM-DD HH:mm"
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Box>
+                </>
+              ) : (
+                <></>
+              )}
+            </Box>
+            <Box sx={{ marginTop: 3, textAlign: "left" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "grey",
+                  },
+                }}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </Box>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={3}>
             <Paper
               sx={{
                 boxShadow: 10,
                 borderRadius: 3,
-                height: "100%",
                 width: "100%",
                 padding: 2,
+                display: "flex",
+                justifyContent: "space-between",
               }}
             >
-              <h4>Current Value</h4>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <h3>Current Value</h3>
+                <Box
+                  sx={{
+                    fontSize: 120,
+                    fontWeight: 600,
+                    color: "black",
+                    display: "inline-flex",
+                    justifyContent: "start",
+                    marginBottom: 1,
+                  }}
+                >
+                  30
+                </Box>
+              </Box>
+              <DeviceThermostatIcon fontSize="large" />
             </Paper>
           </Grid>
-          <Grid item xs={12} sx={{ marginTop: 10 }}>
+          <Grid item xs={12} sx={{ marginTop: 6 }}>
             <Box sx={{ minHeight: 400 }}>
               <DataGrid
                 autoHeight

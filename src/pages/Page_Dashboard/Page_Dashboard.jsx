@@ -107,19 +107,19 @@ export default function Page_Dashboard() {
 
             <TabPanel value="1">
               <RealTimeChart
-                uri="https://069d-113-176-62-181.ngrok-free.app/measurements/temperature/sse"
+                uri="http://localhost:4000/measurements/temperature/sse"
                 label="Temperature"
               />
             </TabPanel>
             <TabPanel value="2">
               <RealTimeChart
-                uri="https://069d-113-176-62-181.ngrok-free.app/measurements/humidity/sse"
+                uri="http://localhost:4000/measurements/humidity/sse"
                 label="Humidity"
               />
             </TabPanel>
             <TabPanel value="3">
               <RealTimeChart
-                uri="https://069d-113-176-62-181.ngrok-free.app/measurements/moisture/sse"
+                uri="http://localhost:4000/measurements/moisture/sse"
                 label="Moisture"
               />
             </TabPanel>
