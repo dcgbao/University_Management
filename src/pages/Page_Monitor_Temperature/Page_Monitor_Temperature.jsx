@@ -65,7 +65,7 @@ export default function Page_Monitor_Temperature() {
       </Box>
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
       <Box sx={{ marginTop: 2 }}>
-        <Grid container spacing={4}>
+        <Grid container spacing={5}>
           <Grid item xs={7}>
             <div>
               <MonitoringChart uri="http://localhost:4000/temperature/monitor"></MonitoringChart>

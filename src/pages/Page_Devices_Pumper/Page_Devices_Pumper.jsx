@@ -5,6 +5,7 @@ import { Box, Button, Divider, Grid, Paper } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Switch } from "antd";
 
 export default function Page_Devices_Pumper() {
   // Test Data
@@ -67,8 +68,9 @@ export default function Page_Devices_Pumper() {
       </Box>
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
       <Box sx={{ marginTop: 2 }}>
-        <Grid container spacing={4}>
+        <Grid container spacing={5}>
           <Grid item xs={7}>
+            {/* <Switch checkedChildren="ON" unCheckedChildren="OFF" /> */}
             <Button
               type="submit"
               variant="contained"

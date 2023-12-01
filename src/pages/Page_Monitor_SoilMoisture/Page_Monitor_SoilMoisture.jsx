@@ -63,7 +63,7 @@ export default function Page_Monitor_SoilMoisture() {
       </Box>
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
       <Box sx={{ marginTop: 2 }}>
-        <Grid container spacing={4}>
+        <Grid container spacing={5}>
           <Grid item xs={7}>
             <MonitoringChart uri="http://localhost:4000/soil-moisture/monitor" />
           </Grid>
