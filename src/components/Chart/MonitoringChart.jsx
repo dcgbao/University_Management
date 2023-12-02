@@ -12,6 +12,7 @@ import {
 	Tooltip,
 } from 'chart.js';
 import useFetch from '../../hooks/useFetch';
+import { gridDateTimeFormatter } from '@mui/x-data-grid';
 Chart.register(
 	zoomPlugin,
 	LineElement,
@@ -30,9 +31,12 @@ Chart.register(
 function MonitoringChart({ uri }) {
 	const { loading, response, error } = useFetch(uri);
 	if (loading) return <div>loading....</div>;
+
 	if (error || response?.status === 'fail') return <div>Fail to load</div>;
 	if (response) {
 		const series = {
+			// Change this to feed new data
+			// Array
 			data: response.data.map((datum) => parseFloat(datum.value)),
 			backgroundColor: 'rgba(255, 99, 132, 0.5)',
 			borderColor: 'rgb(255, 99, 132)',

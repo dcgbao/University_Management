@@ -17,6 +17,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import MonitoringChart from "../../components/Chart/MonitoringChart";
+const env = import.meta.env;
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import axios from "axios";
 
@@ -100,7 +101,7 @@ export default function Page_Monitor_Temperature() {
         <Grid container spacing={5}>
           <Grid item xs={9}>
             <div>
-              <MonitoringChart uri="http://localhost:4000/measurements/temperature"></MonitoringChart>
+              <MonitoringChart uri={`${env.VITE_API_BASE_URL}/measurements/temperature`}></MonitoringChart>
             </div>
             <Box sx={{ display: "flex", marginTop: 3 }}>
               <Box
