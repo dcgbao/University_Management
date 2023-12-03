@@ -27,7 +27,14 @@ import { Switch } from "antd";
 export default function Page_Devices_Door() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
-  const [timeRange, setTimeRange] = useState(null);
+  const [timeRange, setTimeRange] = useState("");
+
+  const handleDoorSwitch = () => {
+    axios
+      .get("http://localhost:4000/devices/door/toggle")
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,41 +48,50 @@ export default function Page_Devices_Door() {
 
   // Test Data
   const rows = [
-    { id: 1, value: 25.2, timestamp: "11/11/2023 12:00" },
-    { id: 2, value: 25.2, timestamp: "11/11/2023 12:00" },
-    { id: 3, value: 25.5, timestamp: "11/11/2023 12:00" },
-    { id: 4, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 5, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 6, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 7, value: 25.7, timestamp: "11/11/2023 12:00" },
-    { id: 8, value: 25.7, timestamp: "11/11/2023 12:00" },
-    { id: 9, value: 25.8, timestamp: "11/11/2023 12:00" },
-    { id: 10, value: 26.0, timestamp: "11/11/2023 12:00" },
+    { timestamp: "11/11/2023 12:01", status: "ON" },
+    { timestamp: "11/11/2023 12:02", status: "OFF" },
+    { timestamp: "11/11/2023 12:03", status: "OFF" },
+    { timestamp: "11/11/2023 12:04", status: "ON" },
+    { timestamp: "11/11/2023 12:05", status: "OFF" },
+    { timestamp: "11/11/2023 12:06", status: "ON" },
+    { timestamp: "11/11/2023 12:07", status: "ON" },
+    { timestamp: "11/11/2023 12:08", status: "ON" },
+    { timestamp: "11/11/2023 12:09", status: "ON" },
+    { timestamp: "11/11/2023 12:10", status: "OFF" },
   ];
 
   const columns = [
-    {
-      field: "id",
-      type: "number",
-      headerName: "ID",
-      width: 300,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "value",
-      type: "number",
-      headerName: "Value (\u00B0C)",
-      width: 400,
-      headerAlign: "center",
-      align: "center",
-      // editable: true,
-    },
+    // {
+    //   field: "id",
+    //   type: "number",
+    //   headerName: "ID",
+    //   width: 300,
+    //   headerAlign: "center",
+    //   align: "center",
+    // },
+    // {
+    //   field: "value",
+    //   type: "number",
+    //   headerName: "Value (\u00B0C)",
+    //   width: 400,
+    //   headerAlign: "center",
+    //   align: "center",
+    //   // editable: true,
+    // },
     {
       field: "timestamp",
       type: "string",
       headerName: "Timestamp",
-      width: 400,
+      width: 600,
+      headerAlign: "center",
+      align: "center",
+      // editable: true,
+      // flex: 1,
+    },
+    {
+      field: "status",
+      type: "string",
+      headerName: "Status",
       headerAlign: "center",
       align: "center",
       // editable: true,
@@ -101,7 +117,11 @@ export default function Page_Devices_Door() {
         >
           Door
         </Box>
-        <Switch checkedChildren="ON" unCheckedChildren="OFF" />
+        <Switch
+          checkedChildren="ON"
+          unCheckedChildren="OFF"
+          onChange={handleDoorSwitch}
+        />
       </Box>
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
       <Box sx={{ marginTop: 2 }}>
@@ -295,7 +315,7 @@ export default function Page_Devices_Door() {
                     },
                   },
                 }}
-                getRowId={(row) => row.id}
+                getRowId={(row) => row.timestamp}
                 disableRowSelectionOnClick
               />
             </Box>
