@@ -304,7 +304,7 @@ export default function Page_Monitor_SoilMoisture() {
                     },
                   },
                 }}
-                getRowId={(row) => row.id}
+                getRowId={(row) => row.timestamp}
                 disableRowSelectionOnClick
               />
             </Box>
