@@ -48,16 +48,16 @@ export default function Page_Devices_Door() {
 
   // Test Data
   const rows = [
-    { timestamp: "11/11/2023 12:01", status: "ON" },
-    { timestamp: "11/11/2023 12:02", status: "OFF" },
-    { timestamp: "11/11/2023 12:03", status: "OFF" },
-    { timestamp: "11/11/2023 12:04", status: "ON" },
-    { timestamp: "11/11/2023 12:05", status: "OFF" },
-    { timestamp: "11/11/2023 12:06", status: "ON" },
-    { timestamp: "11/11/2023 12:07", status: "ON" },
-    { timestamp: "11/11/2023 12:08", status: "ON" },
-    { timestamp: "11/11/2023 12:09", status: "ON" },
-    { timestamp: "11/11/2023 12:10", status: "OFF" },
+    { timestamp: "19/11/2023 12:01", status: "ON" },
+    { timestamp: "19/11/2023 12:02", status: "OFF" },
+    { timestamp: "19/11/2023 12:03", status: "OFF" },
+    { timestamp: "19/11/2023 12:04", status: "ON" },
+    { timestamp: "19/11/2023 12:05", status: "OFF" },
+    { timestamp: "19/11/2023 12:06", status: "ON" },
+    { timestamp: "19/11/2023 12:07", status: "ON" },
+    { timestamp: "19/11/2023 12:08", status: "ON" },
+    { timestamp: "19/11/2023 12:09", status: "ON" },
+    { timestamp: "19/11/2023 12:10", status: "OFF" },
   ];
 
   const columns = [

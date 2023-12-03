@@ -38,16 +38,16 @@ export default function Page_Monitor_Humidity() {
 
   // Test Data
   const rows = [
-    { timestamp: "11/11/2023 12:01", value: 25.2 },
-    { timestamp: "11/11/2023 12:02", value: 25.2 },
-    { timestamp: "11/11/2023 12:03", value: 25.5 },
-    { timestamp: "11/11/2023 12:04", value: 25.6 },
-    { timestamp: "11/11/2023 12:05", value: 25.6 },
-    { timestamp: "11/11/2023 12:06", value: 25.6 },
-    { timestamp: "11/11/2023 12:07", value: 25.7 },
-    { timestamp: "11/11/2023 12:08", value: 25.7 },
-    { timestamp: "11/11/2023 12:09", value: 25.8 },
-    { timestamp: "11/11/2023 12:10", value: 26.0 },
+    { timestamp: "12/11/2023 12:01", value: 25.3 },
+    { timestamp: "12/11/2023 12:02", value: 25.4 },
+    { timestamp: "12/11/2023 12:03", value: 27 },
+    { timestamp: "12/11/2023 12:04", value: 25.7 },
+    { timestamp: "12/11/2023 12:05", value: 25.8 },
+    { timestamp: "12/11/2023 12:06", value: 27 },
+    { timestamp: "12/11/2023 12:07", value: 25.1 },
+    { timestamp: "12/11/2023 12:08", value: 25.11 },
+    { timestamp: "12/11/2023 12:09", value: 25.12 },
+    { timestamp: "12/11/2023 12:10", value: 26.8 },
   ];
 
   const columns = [
@@ -236,7 +236,7 @@ export default function Page_Monitor_Humidity() {
                     marginBottom: 1,
                   }}
                 >
-                  {30} %
+                  {27} %
                 </Box>
               </Box>
               <WaterDropIcon fontSize="large" />

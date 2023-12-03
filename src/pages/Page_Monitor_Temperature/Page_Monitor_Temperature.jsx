@@ -39,12 +39,12 @@ export default function Page_Monitor_Temperature() {
   // Test Data
   const rows = [
     { timestamp: "11/11/2023 12:01", value: 25.2 },
-    { timestamp: "11/11/2023 12:02", value: 25.2 },
+    { timestamp: "11/11/2023 12:02", value: 25 },
     { timestamp: "11/11/2023 12:03", value: 25.5 },
     { timestamp: "11/11/2023 12:04", value: 25.6 },
     { timestamp: "11/11/2023 12:05", value: 25.6 },
     { timestamp: "11/11/2023 12:06", value: 25.6 },
-    { timestamp: "11/11/2023 12:07", value: 25.7 },
+    { timestamp: "11/11/2023 12:07", value: 25 },
     { timestamp: "11/11/2023 12:08", value: 25.7 },
     { timestamp: "11/11/2023 12:09", value: 25.8 },
     { timestamp: "11/11/2023 12:10", value: 26.0 },
@@ -236,7 +236,7 @@ export default function Page_Monitor_Temperature() {
                     marginBottom: 1,
                   }}
                 >
-                  {30} {"\u00B0C"}
+                  {25} {"\u00B0C"}
                 </Box>
               </Box>
               <DeviceThermostatIcon fontSize="large" />

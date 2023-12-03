@@ -28,6 +28,7 @@ export default function Page_Devices_Bulb() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [timeRange, setTimeRange] = useState("");
+  const [initialSwitch, setInitialSwitch] = useState(null); // API
 
   const handleBulbSwitch = () => {
     axios
@@ -46,18 +47,28 @@ export default function Page_Devices_Bulb() {
     // }
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/devices/bulb/sse")
+      .then((response) => {
+        console.log("res: ", response.data);
+        setInitialSwitch(response.data.value);
+      })
+      .catch((error) => console.log(error));
+  }, []); // API
+
   // Test Data
   const rows = [
-    { timestamp: "11/11/2023 12:01", status: "ON" },
-    { timestamp: "11/11/2023 12:02", status: "OFF" },
-    { timestamp: "11/11/2023 12:03", status: "OFF" },
-    { timestamp: "11/11/2023 12:04", status: "ON" },
-    { timestamp: "11/11/2023 12:05", status: "OFF" },
-    { timestamp: "11/11/2023 12:06", status: "ON" },
-    { timestamp: "11/11/2023 12:07", status: "ON" },
-    { timestamp: "11/11/2023 12:08", status: "ON" },
-    { timestamp: "11/11/2023 12:09", status: "ON" },
-    { timestamp: "11/11/2023 12:10", status: "OFF" },
+    { timestamp: "18/11/2023 12:01", status: "ON" },
+    { timestamp: "18/11/2023 12:02", status: "OFF" },
+    { timestamp: "18/11/2023 12:03", status: "OFF" },
+    { timestamp: "18/11/2023 12:04", status: "ON" },
+    { timestamp: "18/11/2023 12:05", status: "OFF" },
+    { timestamp: "18/11/2023 12:06", status: "ON" },
+    { timestamp: "18/11/2023 12:07", status: "ON" },
+    { timestamp: "18/11/2023 12:08", status: "ON" },
+    { timestamp: "18/11/2023 12:09", status: "ON" },
+    { timestamp: "18/11/2023 12:10", status: "OFF" },
   ];
 
   const columns = [
@@ -118,6 +129,7 @@ export default function Page_Devices_Bulb() {
           Bulb
         </Box>
         <Switch
+          checked={initialSwitch} // API
           checkedChildren="ON"
           unCheckedChildren="OFF"
           onChange={handleBulbSwitch}
