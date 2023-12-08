@@ -17,6 +17,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import MonitoringChart from "../../components/Chart/MonitoringChart";
+const env = import.meta.env;
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import axios from "axios";
 
@@ -37,40 +38,50 @@ export default function Page_Monitor_Humidity() {
 
   // Test Data
   const rows = [
-    { id: 1, value: 25.2, timestamp: "11/11/2023 12:00" },
-    { id: 2, value: 25.2, timestamp: "11/11/2023 12:00" },
-    { id: 3, value: 25.5, timestamp: "11/11/2023 12:00" },
-    { id: 4, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 5, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 6, value: 25.6, timestamp: "11/11/2023 12:00" },
-    { id: 7, value: 25.7, timestamp: "11/11/2023 12:00" },
-    { id: 8, value: 25.7, timestamp: "11/11/2023 12:00" },
-    { id: 9, value: 25.8, timestamp: "11/11/2023 12:00" },
-    { id: 10, value: 26.0, timestamp: "11/11/2023 12:00" },
+    { timestamp: "12/11/2023 12:01", value: 25.3 },
+    { timestamp: "12/11/2023 12:02", value: 25.4 },
+    { timestamp: "12/11/2023 12:03", value: 27 },
+    { timestamp: "12/11/2023 12:04", value: 25.7 },
+    { timestamp: "12/11/2023 12:05", value: 25.8 },
+    { timestamp: "12/11/2023 12:06", value: 27 },
+    { timestamp: "12/11/2023 12:07", value: 25.1 },
+    { timestamp: "12/11/2023 12:08", value: 25.11 },
+    { timestamp: "12/11/2023 12:09", value: 25.12 },
+    { timestamp: "12/11/2023 12:10", value: 26.8 },
   ];
 
   const columns = [
+    // {
+    //   field: "id",
+    //   type: "number",
+    //   headerName: "ID",
+    //   width: 300,
+    //   headerAlign: "center",
+    //   align: "center",
+    // },
+    // {
+    //   field: "value",
+    //   type: "number",
+    //   headerName: "Value (%)",
+    //   width: 400,
+    //   headerAlign: "center",
+    //   align: "center",
+    //   // editable: true,
+    // },
     {
-      field: "id",
-      type: "number",
-      headerName: "ID",
-      width: 300,
+      field: "timestamp",
+      type: "string",
+      headerName: "Timestamp",
+      width: 600,
       headerAlign: "center",
       align: "center",
+      // editable: true,
+      // flex: 1,
     },
     {
       field: "value",
       type: "number",
       headerName: "Value (%)",
-      width: 400,
-      headerAlign: "center",
-      align: "center",
-      // editable: true,
-    },
-    {
-      field: "timestamp",
-      type: "string",
-      headerName: "Timestamp",
       width: 400,
       headerAlign: "center",
       align: "center",
@@ -100,7 +111,9 @@ export default function Page_Monitor_Humidity() {
         <Grid container spacing={5}>
           <Grid item xs={9}>
             <div>
-              <MonitoringChart uri="http://localhost:4000/measurements/humidity"></MonitoringChart>
+              <MonitoringChart
+                uri={`${env.VITE_API_BASE_URL}/measurements/humidity`}
+              ></MonitoringChart>
             </div>
             <Box sx={{ display: "flex", marginTop: 3 }}>
               <Box
@@ -223,7 +236,7 @@ export default function Page_Monitor_Humidity() {
                     marginBottom: 1,
                   }}
                 >
-                  {30} %
+                  {27} %
                 </Box>
               </Box>
               <WaterDropIcon fontSize="large" />
@@ -290,7 +303,7 @@ export default function Page_Monitor_Humidity() {
                     },
                   },
                 }}
-                getRowId={(row) => row.id}
+                getRowId={(row) => row.timestamp}
                 disableRowSelectionOnClick
               />
             </Box>

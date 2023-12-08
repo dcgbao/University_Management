@@ -1,4 +1,4 @@
-// Current Value >= Default Value -> turn on pumper
+// Current Value >= Default Value -> turn on door
 // columns: Timestamp, Status
 
 import {
@@ -20,18 +20,18 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import MonitoringChart from "../../components/Chart/MonitoringChart";
-import HardwareIcon from "@mui/icons-material/Hardware";
+import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import axios from "axios";
 import { Switch } from "antd";
 
-export default function Page_Devices_Pumper() {
+export default function Page_Devices_Door() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
-  const [timeRange, setTimeRange] = useState(null);
+  const [timeRange, setTimeRange] = useState("");
 
-  const handlePumperSwitch = () => {
+  const handleDoorSwitch = () => {
     axios
-      .get("http://localhost:4000/devices/pumper/toggle")
+      .get("http://localhost:4000/devices/door/toggle")
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -48,15 +48,16 @@ export default function Page_Devices_Pumper() {
 
   // Test Data
   const rows = [
-    { timestamp: "18/11/2023 12:01", status: "OFF" },
-    { timestamp: "18/11/2023 12:02", status: "ON" },
-    { timestamp: "18/11/2023 12:03", status: "ON" },
-    { timestamp: "18/11/2023 12:04", status: "ON" },
-    { timestamp: "18/11/2023 12:05", status: "OFF" },
-    { timestamp: "18/11/2023 12:06", status: "OFF" },
-    { timestamp: "18/11/2023 12:07", status: "OFF" },
-    { timestamp: "18/11/2023 12:08", status: "ON" },
-    { timestamp: "18/11/2023 12:09", status: "ON" },
+    { timestamp: "19/11/2023 12:01", status: "ON" },
+    { timestamp: "19/11/2023 12:02", status: "OFF" },
+    { timestamp: "19/11/2023 12:03", status: "OFF" },
+    { timestamp: "19/11/2023 12:04", status: "ON" },
+    { timestamp: "19/11/2023 12:05", status: "OFF" },
+    { timestamp: "19/11/2023 12:06", status: "ON" },
+    { timestamp: "19/11/2023 12:07", status: "ON" },
+    { timestamp: "19/11/2023 12:08", status: "ON" },
+    { timestamp: "19/11/2023 12:09", status: "ON" },
+    { timestamp: "19/11/2023 12:10", status: "OFF" },
   ];
 
   const columns = [
@@ -114,12 +115,12 @@ export default function Page_Devices_Pumper() {
             marginRight: 2,
           }}
         >
-          Pumper
+          Door
         </Box>
         <Switch
           checkedChildren="ON"
           unCheckedChildren="OFF"
-          onChange={handlePumperSwitch}
+          onChange={handleDoorSwitch}
         />
       </Box>
       <Divider sx={{ borderColor: "lightgray" }}></Divider>
@@ -250,7 +251,7 @@ export default function Page_Devices_Pumper() {
                   ON
                 </Box>
               </Box>
-              <HardwareIcon fontSize="large" />
+              <MeetingRoomIcon fontSize="large" />
             </Paper>
           </Grid>
           <Grid item xs={12} sx={{ marginTop: 6 }}>
