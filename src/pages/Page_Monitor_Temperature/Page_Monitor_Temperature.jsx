@@ -214,7 +214,7 @@ export default function Page_Monitor_Temperature() {
             </Box>
           </Grid>
           <Grid item xs={3}>
-            <Paper
+            {/* <Paper
               sx={{
                 boxShadow: 10,
                 borderRadius: 3,
@@ -240,7 +240,7 @@ export default function Page_Monitor_Temperature() {
                 </Box>
               </Box>
               <DeviceThermostatIcon fontSize="large" />
-            </Paper>
+            </Paper> */}
           </Grid>
           <Grid item xs={12} sx={{ marginTop: 6 }}>
             <Box sx={{ minHeight: 400 }}>
